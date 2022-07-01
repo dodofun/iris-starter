@@ -21,7 +21,7 @@ type Config struct {
 
 func init() {
 	// 解析当前环境
-	var env = flag.String("env", "index", "app env")
+	var env = flag.String("env", "dev", "app env")
 	flag.Parse()
 	envIni := "./config/" + *env + ".ini"
 
