@@ -4,7 +4,9 @@ go 1.18
 
 require (
 	github.com/kataras/iris/v12 v12.2.0-beta3.0.20220623200152-8bfea48cd652
+	go.uber.org/zap v1.21.0
 	gopkg.in/ini.v1 v1.66.6
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )
 
 require (
@@ -44,6 +46,8 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.3.5 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/yosssi/ace v0.0.5 // indirect
+	go.uber.org/atomic v1.9.0 // indirect
+	go.uber.org/multierr v1.8.0 // indirect
 	golang.org/x/crypto v0.0.0-20220507011949-2cf3adece122 // indirect
 	golang.org/x/net v0.0.0-20220425223048-2871e0cb64e4 // indirect
 	golang.org/x/sys v0.0.0-20220503163025-988cb79eb6c6 // indirect
