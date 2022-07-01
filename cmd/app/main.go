@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"flag"
 	"fmt"
 	"iris-starter/internal/config"
 
@@ -14,7 +13,6 @@ import (
 
 var (
 	err         error
-	configPath  string
 	ctx, cancel = context.WithCancel(context.Background())
 	wg          = new(sync.WaitGroup)
 	app         = iris.New()
@@ -30,18 +28,12 @@ func main() {
 
 	// 监听端口
 	// logging.Info("Start Web Server ")
-	fmt.Println(config.GetConfig().AppName)
 	if err = app.Run(iris.Addr(":"+config.GetConfig().HttpPort), iris.WithoutInterruptHandler); err != nil {
 		fmt.Printf("Start Web Server err: " + err.Error())
 	}
 }
 
 func init() {
-	flag.StringVar(&configPath, "config", "./configs/config.json", "配置文件路径以及文件名(必填)")
-	flag.Parse()
-
-	// 初始化配置
-	// config.Init(configPath)
 
 	// 注册mysql
 
