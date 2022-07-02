@@ -11,9 +11,9 @@ tmp_dir = "tmp"
   exclude_regex = ["_test.go"]
   exclude_unchanged = false
   follow_symlink = false
-  full_bin = "./tmp/main --env=pro"
+  full_bin = "./tmp/main --env=dev"
   include_dir = []
-  include_ext = ["go", "tpl", "tmpl", "html"]
+  include_ext = ["go", "ini", "toml", "html"]
   kill_delay = "0s"
   log = "air.log"
   send_interrupt = false
