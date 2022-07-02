@@ -14,7 +14,7 @@ tmp_dir = "tmp"
   full_bin = "./tmp/main --env=pro"
   include_dir = []
   include_ext = ["ini", "toml", "html", "Dockerfile"]
-  kill_delay = "0s"
+  kill_delay = "2s"
   log = "./logs/air.log"
   send_interrupt = false
   stop_on_error = true
