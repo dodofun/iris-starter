@@ -12,6 +12,7 @@
 *.out
 
 *.idea
-logs/*
-tmp
 *.run
+*.log
+
+tmp
