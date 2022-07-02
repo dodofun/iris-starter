@@ -21,7 +21,7 @@ func main() {
 	// api.Index(app)
 
 	// 监听端口
-	logging.Info("Start Web Server")
+	logging.Info("Start Web Server !")
 	if err = app.Run(iris.Addr(":"+config.GetConfig().HttpPort), iris.WithoutInterruptHandler); err != nil {
 		logging.Error("Start Web Server err: " + err.Error())
 	}

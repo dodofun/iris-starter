@@ -4,7 +4,7 @@ tmp_dir = "tmp"
 [build]
   args_bin = []
   bin = "./tmp/main"
-  cmd = "cp main ./tmp/main"
+  cmd = "cp main.run ./tmp/main"
   delay = 1000
   exclude_dir = ["tmp", "logs"]
   exclude_file = []
@@ -13,7 +13,7 @@ tmp_dir = "tmp"
   follow_symlink = false
   full_bin = "./tmp/main --env=pro"
   include_dir = []
-  include_ext = ["ini", "toml", "html", "Dockerfile"]
+  include_ext = ["ini", "toml", "html", "Dockerfile", "run"]
   kill_delay = "2s"
   log = "./logs/air.log"
   send_interrupt = false

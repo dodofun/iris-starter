@@ -6,7 +6,7 @@ echo "Start build......"
 go build ./cmd/app/main.go
 
 # 复制打包后文件
-mv main ./deploy/main
+mv main ./deploy/main.run
 
 # 复制配置文件
 cp ./config/index.ini ./deploy/config/index.ini
