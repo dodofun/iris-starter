@@ -12,6 +12,6 @@
 *.out
 
 *.idea
-logs
+logs/*
 tmp
 *.run
