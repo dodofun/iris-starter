@@ -17,7 +17,6 @@ var (
 func Auth(ctx iris.Context) {
 
 	duration := config.GetConfig().HttpAuthDuration
-	logging.Infof("duration: ", duration)
 	// 生成token
 	token, err := jwt.CreateToken(map[string]interface{}{"userId": "123456"}, duration)
 	if err != nil {
@@ -33,10 +32,6 @@ func Auth(ctx iris.Context) {
 		// 	// TODO 返回异常
 		// 	return
 		// }
-
-		logging.Info("path: " + ctx.RequestPath(true))
-		logging.Info("path2: " + ctx.RequestPath(false))
-		logging.Info("RouteName: " + ctx.RouteName())
 
 		// 解析token
 		value, err := jwt.ParseToken(token)
