@@ -8,6 +8,11 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
+var (
+	// 不需要鉴权的路由列表
+	noAuth = map[string]bool{"POST/v1/login": true}
+)
+
 // Auth 验证中间件.
 func Auth(ctx iris.Context) {
 
@@ -20,21 +25,28 @@ func Auth(ctx iris.Context) {
 		return
 	}
 
-	// 获取header中的token
-	// token = ctx.GetHeader(jwt.Authorization)
-	// if token == "" {
-	// 	// TODO 返回异常
-	// 	return
-	// }
+	if !noAuth[ctx.RouteName()] {
+		// 不在白名单中，需要鉴权
+		// 获取header中的token
+		// token = ctx.GetHeader(jwt.Authorization)
+		// if token == "" {
+		// 	// TODO 返回异常
+		// 	return
+		// }
 
-	// 解析token
-	value, err := jwt.ParseToken(token)
-	if err != nil {
-		// TODO 异常处理
-		logging.Info("err: " + err.Error())
-		return
+		logging.Info("path: " + ctx.RequestPath(true))
+		logging.Info("path2: " + ctx.RequestPath(false))
+		logging.Info("RouteName: " + ctx.RouteName())
+
+		// 解析token
+		value, err := jwt.ParseToken(token)
+		if err != nil {
+			// TODO 异常处理
+			logging.Info("err: " + err.Error())
+			return
+		}
+		logging.Info("value:" + value["userId"].(string))
 	}
-	logging.Info("value:" + value["userId"].(string))
 
 	ctx.Next()
 
