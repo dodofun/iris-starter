@@ -1,7 +1,7 @@
 package jwt
 
 import (
-	"fmt"
+	"errors"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -18,9 +18,6 @@ type Claims struct {
 // data: 数据
 // durationSecond: 有效期，单位秒
 func CreateToken(data map[string]interface{}, durationSecond uint64) (string, error) {
-	if durationSecond <= 0 {
-		durationSecond = 0
-	}
 	claims := Claims{
 		data,
 		jwt.RegisteredClaims{
@@ -49,13 +46,16 @@ func ParseToken(token string) (data map[string]interface{}, err error) {
 	}); err != nil {
 		return
 	}
-	if err = tokenInfo.Claims.Valid(); err != nil {
-		return
-	}
 	if claims, ok := tokenInfo.Claims.(*Claims); ok && tokenInfo.Valid {
 		data = claims.Data
 	} else {
-		fmt.Println(err)
+		err = errors.New("parsing data exception")
 	}
+	return
+}
+
+// RefreshToken 刷新token有效期.
+func RefreshToken(token string) (data map[string]interface{}, err error) {
+	// TODO
 	return
 }

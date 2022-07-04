@@ -12,6 +12,7 @@ import (
 func Auth(ctx iris.Context) {
 
 	duration := config.GetConfig().HttpAuthDuration
+	logging.Infof("duration: ", duration)
 	// 生成token
 	token, err := jwt.CreateToken(map[string]interface{}{"userId": "123456"}, duration)
 	if err != nil {
@@ -34,6 +35,7 @@ func Auth(ctx iris.Context) {
 		return
 	}
 	logging.Info("value:" + value["userId"].(string))
+
 	ctx.Next()
 
 }
