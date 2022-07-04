@@ -1,10 +1,12 @@
 package main
 
 import (
+	"github.com/kataras/iris/v12"
+
 	"iris-starter/internal/config"
 	"iris-starter/pkg/logging"
 
-	"github.com/kataras/iris/v12"
+	"iris-starter/internal/router"
 )
 
 var (
@@ -17,9 +19,6 @@ func main() {
 		logging.Sync()
 	}()
 
-	// 初始化路由
-	// api.Index(app)
-
 	// 监听端口
 	logging.Info("Start Web Server !")
 	if err = app.Run(iris.Addr(":"+config.GetConfig().HttpPort), iris.WithoutInterruptHandler); err != nil {
@@ -31,6 +30,9 @@ func init() {
 
 	// 初始化日志
 	logging.Init(config.GetConfig().Log)
+
+	// 初始化路由
+	router.Init(app)
 
 	// 注册mysql
 
