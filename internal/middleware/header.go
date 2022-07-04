@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"iris-starter/internal/config"
+	"net/http"
 
 	"github.com/kataras/iris/v12"
 )
@@ -16,8 +17,8 @@ func Header(ctx iris.Context) {
 	ctx.Header("Access-Control-Allow-Headers", serverConfig.AccessControlAllowHeaders)
 	ctx.Header("Access-Control-Allow-Methods", serverConfig.AccessControlAllowMethods)
 
-	if ctx.Request().Method == "OPTIONS" {
-		ctx.StatusCode(204)
+	if ctx.Request().Method == http.MethodOptions {
+		ctx.StatusCode(http.StatusNoContent)
 		return
 	}
 	ctx.Next()
