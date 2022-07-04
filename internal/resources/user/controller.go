@@ -1,4 +1,4 @@
-package controller
+package user
 
 import "github.com/kataras/iris/v12"
 
@@ -7,7 +7,7 @@ const (
 	listPath = basePath + "s"
 )
 
-func registerRouter(app *iris.Application) {
+func RegisterRouter(app *iris.Application) {
 	party := app.Party(basePath)
 	{
 		party.Get(basePath, Get)

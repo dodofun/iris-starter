@@ -2,6 +2,7 @@ package router
 
 import (
 	"iris-starter/internal/middleware"
+	"iris-starter/internal/resources/user"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/middleware/pprof"
@@ -23,5 +24,6 @@ func Init(app *iris.Application) {
 	app.Any("/debug/pprof/{action:path}", p)
 
 	// 注册资源路由
+	user.RegisterRouter(app)
 
 }
