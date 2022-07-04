@@ -3,6 +3,7 @@ module iris-starter
 go 1.18
 
 require (
+	github.com/golang-jwt/jwt/v4 v4.4.2
 	github.com/kataras/iris/v12 v12.2.0-beta3.0.20220623200152-8bfea48cd652
 	go.uber.org/zap v1.21.0
 	gopkg.in/ini.v1 v1.66.6

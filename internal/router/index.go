@@ -15,6 +15,7 @@ func Init(app *iris.Application) {
 	// 设置请求头
 	app.Use((middleware.Header))
 	// 用户鉴权
+	app.Use((middleware.Auth))
 
 	// 性能分析
 	p := pprof.New()

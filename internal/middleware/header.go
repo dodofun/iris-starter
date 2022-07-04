@@ -10,7 +10,7 @@ var (
 	serverConfig = config.GetConfig().Server
 )
 
-// HeaderMiddleware 设置请求头.
+// Header 设置请求头.
 func Header(ctx iris.Context) {
 	ctx.Header("Access-Control-Allow-Origin", serverConfig.AccessControlAllowOrigin)
 	ctx.Header("Access-Control-Allow-Headers", serverConfig.AccessControlAllowHeaders)

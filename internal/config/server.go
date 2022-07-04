@@ -11,4 +11,5 @@ type Server struct {
 	AccessControlAllowOrigin  string
 	AccessControlAllowHeaders string
 	AccessControlAllowMethods string
+	HttpAuthDuration          uint64
 }
