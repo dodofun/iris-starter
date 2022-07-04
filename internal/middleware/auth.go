@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"iris-starter/internal/config"
 	"iris-starter/pkg/jwt"
 	"iris-starter/pkg/logging"
@@ -34,7 +33,7 @@ func Auth(ctx iris.Context) {
 		logging.Info("err: " + err.Error())
 		return
 	}
-	fmt.Println("value:", value, value["userId"])
+	logging.Info("value:" + value["userId"].(string))
 	ctx.Next()
 
 }
