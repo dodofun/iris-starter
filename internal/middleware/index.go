@@ -10,7 +10,7 @@ func Init(app *iris.Application) {
 	// 从 panics 和 logs恢复
 	app.Use(recover.New())
 	// 限速
-	app.Use(Limit)
+	// app.Use(Limit)
 	// 设置请求头
 	app.Use(Header)
 	// 用户鉴权
