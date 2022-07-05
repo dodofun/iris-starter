@@ -28,7 +28,7 @@ func Init(app *iris.Application) {
 	app.Any("/debug/pprof/{action:path}", p)
 
 	// 注册资源路由
-	user.Init(app)
+	user.RegisterRouter(app)
 
 	// 404
 	app.Any("", notFound)

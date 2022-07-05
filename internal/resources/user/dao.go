@@ -1,11 +1,11 @@
 package user
 
 type Dao interface {
-	get()
-	getList()
-	post()
-	put()
-	delete()
+	Get()
+	GetList()
+	Post()
+	Put()
+	Delete()
 }
 type dao struct {
 }
@@ -14,22 +14,22 @@ func newDao() Dao {
 	return &dao{}
 }
 
-func (s *dao) get() {
+func (s *dao) Get() {
 
 }
 
-func (s *dao) getList() {
+func (s *dao) GetList() {
 
 }
 
-func (s *dao) post() {
+func (s *dao) Post() {
 
 }
 
-func (s *dao) put() {
+func (s *dao) Put() {
 
 }
 
-func (s *dao) delete() {
+func (s *dao) Delete() {
 
 }

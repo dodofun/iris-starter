@@ -5,7 +5,7 @@ package user
 
 import "github.com/google/wire"
 
-func initController() *controller {
-	wire.Build(newController, newService, newDao, newCache)
+func initService() Service {
+	wire.Build(newService, newDao, newCache)
 	return nil
 }

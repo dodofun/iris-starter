@@ -10,29 +10,15 @@ const (
 )
 
 var (
-	ctl *controller
+	userService Service
 )
 
-type controller struct {
-	service Service
-}
-
-func newController(service Service) *controller {
-	return &controller{
-		service,
-	}
-}
-
-func Init(app *iris.Application) *controller {
+func init() {
 	// 注入依赖
-	ctl = initController()
-	// 注册路由
-	registerRouter(app)
-	// 返回 controller
-	return ctl
+	userService = initService()
 }
 
-func registerRouter(app *iris.Application) {
+func RegisterRouter(app *iris.Application) {
 	app.Get(basePath, get)
 	app.Get(listPath, getList)
 	app.Post(basePath, post)
@@ -41,21 +27,21 @@ func registerRouter(app *iris.Application) {
 }
 
 func get(ctx iris.Context) {
-	ctl.service.get()
+	userService.Get()
 }
 
 func getList(ctx iris.Context) {
-	ctl.service.getList()
+	userService.GetList()
 }
 
 func post(ctx iris.Context) {
-	ctl.service.post()
+	userService.Post()
 }
 
 func put(ctx iris.Context) {
-	ctl.service.put()
+	userService.Put()
 }
 
 func delete(ctx iris.Context) {
-	ctl.service.delete()
+	userService.Delete()
 }

@@ -1,11 +1,11 @@
 package user
 
 type Cache interface {
-	get()
-	getList()
-	post()
-	put()
-	delete()
+	Get()
+	GetList()
+	Post()
+	Put()
+	Delete()
 }
 type cache struct {
 }
@@ -14,22 +14,22 @@ func newCache() Cache {
 	return &cache{}
 }
 
-func (s *cache) get() {
+func (s *cache) Get() {
 
 }
 
-func (s *cache) getList() {
+func (s *cache) GetList() {
 
 }
 
-func (s *cache) post() {
+func (s *cache) Post() {
 
 }
 
-func (s *cache) put() {
+func (s *cache) Put() {
 
 }
 
-func (s *cache) delete() {
+func (s *cache) Delete() {
 
 }

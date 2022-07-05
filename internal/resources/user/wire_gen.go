@@ -8,10 +8,9 @@ package user
 
 // Injectors from wire.go:
 
-func initController() *controller {
+func initService() Service {
 	userDao := newDao()
 	userCache := newCache()
-	userService := newService(userDao, userCache)
-	userController := newController(userService)
-	return userController
+	service2 := newService(userDao, userCache)
+	return service2
 }

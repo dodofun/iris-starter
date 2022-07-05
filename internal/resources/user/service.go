@@ -1,11 +1,11 @@
 package user
 
 type Service interface {
-	get()
-	getList()
-	post()
-	put()
-	delete()
+	Get()
+	GetList()
+	Post()
+	Put()
+	Delete()
 }
 
 type service struct {
@@ -17,22 +17,22 @@ func newService(dao Dao, cache Cache) Service {
 	return &service{dao, cache}
 }
 
-func (s *service) get() {
+func (s *service) Get() {
 
 }
 
-func (s *service) getList() {
+func (s *service) GetList() {
 
 }
 
-func (s *service) post() {
+func (s *service) Post() {
 
 }
 
-func (s *service) put() {
+func (s *service) Put() {
 
 }
 
-func (s *service) delete() {
+func (s *service) Delete() {
 
 }
