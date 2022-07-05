@@ -1,36 +1,38 @@
 package user
 
-import "github.com/google/wire"
-
-type Service struct {
-	dao dao
+type Service interface {
+	get()
+	getList()
+	post()
+	put()
+	delete()
 }
 
-func newService(dao dao) Service {
-	return Service{dao: dao}
+type service struct {
+	dao   Dao
+	cache Cache
 }
 
-func InitService() (Service, error) {
-	wire.Build(newService, newDao)
-	return Service{}, nil
+func newService(dao Dao, cache Cache) Service {
+	return &service{dao, cache}
 }
 
-func (s *Service) get() {
-
-}
-
-func (s *Service) getList() {
-
-}
-
-func (s *Service) post() {
+func (s *service) get() {
 
 }
 
-func (s *Service) put() {
+func (s *service) getList() {
 
 }
 
-func (s *Service) delete() {
+func (s *service) post() {
+
+}
+
+func (s *service) put() {
+
+}
+
+func (s *service) delete() {
 
 }
