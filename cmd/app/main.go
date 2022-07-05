@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/go-playground/validator/v10"
 	"github.com/kataras/iris/v12"
 
 	"iris-starter/internal/config"
@@ -27,6 +28,8 @@ func main() {
 }
 
 func init() {
+	// 引入参数校验
+	app.Validator = validator.New()
 
 	// 初始化日志
 	logging.Init(config.GetConfig().Log)

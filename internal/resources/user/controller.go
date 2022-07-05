@@ -1,6 +1,9 @@
 package user
 
 import (
+	"iris-starter/pkg/logging"
+	"iris-starter/pkg/request"
+
 	"github.com/kataras/iris/v12"
 )
 
@@ -27,14 +30,31 @@ func RegisterRouter(app *iris.Application) {
 }
 
 func get(ctx iris.Context) {
+	var query request.QueryId
+	err := ctx.ReadQuery(&query)
+	logging.Infof("ID: ", query.Id)
+	logging.Infof("ERROR: ", err)
+	if err != nil {
+		ctx.StopWithError(iris.StatusBadRequest, err)
+		return
+	}
 	userService.Get()
 }
 
 func getList(ctx iris.Context) {
+
 	userService.GetList()
 }
 
 func post(ctx iris.Context) {
+	var body PostRequest
+	err := ctx.ReadJSON(&body)
+	logging.Infof("ID: ", body.Name)
+	logging.Infof("ERROR: ", err)
+	if err != nil {
+		ctx.StopWithError(iris.StatusBadRequest, err)
+		return
+	}
 	userService.Post()
 }
 

@@ -10,7 +10,7 @@ import (
 
 func Init(app *iris.Application) {
 	// 路由不覆盖
-	app.SetRegisterRule(iris.RouteSkip)
+	app.SetRegisterRule(iris.RouteError)
 
 	// 引入中间件
 	middleware.Init(app)
