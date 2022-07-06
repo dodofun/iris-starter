@@ -15,4 +15,7 @@ func Init(app *iris.Application) {
 	app.Use(Header)
 	// 用户鉴权
 	app.Use(Auth)
+	// 压缩
+	app.Use(iris.Compression)
+
 }
