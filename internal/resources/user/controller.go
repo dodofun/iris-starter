@@ -42,7 +42,14 @@ func get(ctx iris.Context) {
 }
 
 func getList(ctx iris.Context) {
-
+	var query request.QueryPaging
+	err := ctx.ReadQuery(&query)
+	logging.Infof("Page: ", query.Page)
+	logging.Infof("ERROR: ", err)
+	if err != nil {
+		ctx.StopWithError(iris.StatusBadRequest, err)
+		return
+	}
 	userService.GetList()
 }
 
@@ -59,9 +66,25 @@ func post(ctx iris.Context) {
 }
 
 func put(ctx iris.Context) {
+	var body PutRequest
+	err := ctx.ReadJSON(&body)
+	logging.Infof("ID: ", body.Name)
+	logging.Infof("ERROR: ", err)
+	if err != nil {
+		ctx.StopWithError(iris.StatusBadRequest, err)
+		return
+	}
 	userService.Put()
 }
 
 func delete(ctx iris.Context) {
+	var query request.QueryId
+	err := ctx.ReadQuery(&query)
+	logging.Infof("ID: ", query.Id)
+	logging.Infof("ERROR: ", err)
+	if err != nil {
+		ctx.StopWithError(iris.StatusBadRequest, err)
+		return
+	}
 	userService.Delete()
 }
