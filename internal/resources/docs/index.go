@@ -1,11 +1,13 @@
 package docs
 
 import (
+	"time"
+
 	"github.com/iris-contrib/swagger"
 	"github.com/iris-contrib/swagger/swaggerFiles"
 	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/cache"
 )
-
 
 func RegisterRouter(app *iris.Application) {
 	swaggerUI := swagger.Handler(swaggerFiles.Handler,
@@ -13,6 +15,8 @@ func RegisterRouter(app *iris.Application) {
 		swagger.DeepLinking(true),
 		swagger.Prefix("/swagger"),
 	)
-	app.Get("/swagger", swaggerUI)
+	// 设置资源缓存，缓存10秒，之后会被清除并重置
+	cacheHandler := cache.Handler(10 * time.Second)
+	app.Get("/swagger", cacheHandler, swaggerUI)
 	app.Get("/swagger/{any:path}", swaggerUI)
 }

@@ -9,7 +9,7 @@ import (
 )
 
 func Init(app *iris.Application) {
-	// 路由不覆盖
+	// 重复路由报错
 	app.SetRegisterRule(iris.RouteError)
 
 	// 引入中间件

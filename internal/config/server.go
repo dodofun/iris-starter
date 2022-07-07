@@ -5,6 +5,7 @@ type Server struct {
 	HttpPort                  string
 	HttpRequestData           string
 	HttpResponseData          string
+	HttpRequestTimeout        uint64
 	RpcPort                   string
 	RpcRequestData            string
 	RpcResponseData           string
