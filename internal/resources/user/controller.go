@@ -29,6 +29,13 @@ func RegisterRouter(app *iris.Application) {
 	app.Delete(basePath, delete)
 }
 
+// @Summary 获取用户
+// @Description 根据用户ID获取用户信息
+// @Accept  json
+// @Produce  json
+// @Param id query int  true  "用户ID"
+// @Success 200 {string} string	"ok"
+// @Router /v1/user [get]
 func get(ctx iris.Context) {
 	var query request.QueryId
 	err := ctx.ReadQuery(&query)

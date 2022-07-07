@@ -11,7 +11,7 @@ import (
 
 func RegisterRouter(app *iris.Application) {
 	swaggerUI := swagger.Handler(swaggerFiles.Handler,
-		swagger.URL("/assets/doc.yaml"), // The url pointing to API definition.
+		swagger.URL("/assets/docs/swagger.yaml"), // The url pointing to API definition.
 		swagger.DeepLinking(true),
 		swagger.Prefix("/apidoc"),
 	)

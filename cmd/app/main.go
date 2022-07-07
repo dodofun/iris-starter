@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"os/exec"
 	"time"
 
 	"github.com/go-playground/validator/v10"
@@ -18,10 +20,9 @@ var (
 	app = iris.New()
 )
 
-// @title Swagger Example API
+// @title API DOC
 // @version 1.0
-// @description This is a sample server Petstore server.
-// @termsOfService http://swagger.io/terms/
+// @description API文档.
 
 // @contact.name API Support
 // @contact.url http://www.swagger.io/support
@@ -31,7 +32,7 @@ var (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
 // @host localhost:8080
-// @BasePath /v2
+// @BasePath /v1
 func main() {
 	defer func() {
 		logging.Sync()
@@ -59,6 +60,10 @@ func main() {
 }
 
 func init() {
+
+	// 初始化接口文档
+	InitDoc()
+
 	// 引入参数校验
 	app.Validator = validator.New()
 
@@ -72,4 +77,11 @@ func init() {
 
 	// 注册redis
 
+}
+
+func InitDoc() {
+	_, err := exec.Command("./scripts/docs.sh").Output()
+	if err != nil {
+		fmt.Printf("error %s", err)
+	}
 }
