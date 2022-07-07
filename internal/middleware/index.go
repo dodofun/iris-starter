@@ -12,9 +12,9 @@ func Init(app *iris.Application) {
 	// 限速
 	// app.Use(Limit)
 	// 设置请求头
-	app.Use(Header)
+	// app.Use(Header)
 	// 用户鉴权
-	app.Use(Auth)
+	// app.Use(Auth)
 	// 压缩
 	app.Use(iris.Compression)
 
