@@ -1,4 +1,20 @@
 basePath: /v1
+definitions:
+  user.User:
+    properties:
+      createAt:
+        type: integer
+      enable:
+        type: boolean
+      id:
+        type: integer
+      mobile:
+        type: integer
+      name:
+        type: string
+      updateAt:
+        type: integer
+    type: object
 host: localhost:8080
 info:
   contact:
@@ -24,8 +40,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: ok
+          description: 用户信息
           schema:
-            type: string
-      summary: 获取用户
+            $ref: '#/definitions/user.User'
+      summary: 获取用户信息
 swagger: "2.0"

@@ -1,23 +1,26 @@
 package response
 
-type Obj[T any] struct {
-	Header Header `json:"header"`
-	Data   T      `json:"data"`
+import "github.com/kataras/iris/v12"
+
+// 错误：参数
+func ErrorParam() {
+
 }
 
-type List[T any] struct {
-	Header Header `json:"header"`
-	Paging Paging `json:"paging"`
-	Data   []T    `json:"data"`
+// 错误：返回
+func Error() {
+
 }
 
-type Header struct {
-	Code    uint64 `json:"code"`
-	Message string `json:"message"`
-}
+//
+func OkObj(ctx iris.Context, data interface{}) {
+	ctx.Negotiation().Charset("utf-8")
+	ctx.Negotiation().JSON().Binary().Text().EncodingGzip()
 
-type Paging struct {
-	Page     uint64 `json:"page"`
-	PageSize uint64 `json:"pageSize"`
-	Total    uint64 `json:"total"`
+	ctx.Negotiate(iris.N{
+		Binary: data, // for application/octet-stream,
+		JSON:   data, // for application/json
+		XML:    data, // for application/xml or text/xml
+		// Other: for anything else,
+	})
 }

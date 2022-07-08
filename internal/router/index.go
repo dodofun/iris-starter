@@ -32,6 +32,8 @@ func Init(app *iris.Application) {
 	// 注册web页面
 	app.RegisterView(iris.HTML("./views", ".html"))
 	app.Get("/view", func(ctx iris.Context) {
+		// 资源压缩
+		ctx.CompressWriter(true)
 		ctx.View("index.html")
 	})
 }

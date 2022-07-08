@@ -29,7 +29,7 @@ const docTemplate = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "获取用户",
+                "summary": "获取用户信息",
                 "parameters": [
                     {
                         "type": "integer",
@@ -41,11 +41,36 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "ok",
+                        "description": "用户信息",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/user.User"
                         }
                     }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "user.User": {
+            "type": "object",
+            "properties": {
+                "createAt": {
+                    "type": "integer"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "mobile": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updateAt": {
+                    "type": "integer"
                 }
             }
         }

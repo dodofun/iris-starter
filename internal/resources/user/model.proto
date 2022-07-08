@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./user";
+
+message PostRequest {
+    string name = 1;
+}
+
+message PutRequest {
+    string message = 1;
+}
+
