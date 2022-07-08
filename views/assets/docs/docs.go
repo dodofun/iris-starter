@@ -53,6 +53,10 @@ const docTemplate = `{
     "definitions": {
         "user.User": {
             "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
             "properties": {
                 "createAt": {
                     "type": "integer"
@@ -61,12 +65,17 @@ const docTemplate = `{
                     "type": "boolean"
                 },
                 "id": {
+                    "description": "@gotags: validate:\"required\"",
                     "type": "integer"
                 },
                 "mobile": {
-                    "type": "integer"
+                    "description": "@gotags: validate:\"gte=10000000000,lte=100000000000\"",
+                    "type": "integer",
+                    "maximum": 100000000000,
+                    "minimum": 10000000000
                 },
                 "name": {
+                    "description": "@gotags: validate:\"required\"",
                     "type": "string"
                 },
                 "updateAt": {

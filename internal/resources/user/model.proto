@@ -5,10 +5,21 @@ package user;
 option go_package = "./user";
 
 message PostRequest {
-    string name = 1;
+    string name = 2;  // @gotags: validate:"required"
+    uint64 mobile = 3;  // @gotags: validate:"gte=10000000000,lte=100000000000"
 }
 
 message PutRequest {
-    string message = 1;
+    uint64 id = 1;  // @gotags: validate:"required"
+    string name = 2;  // @gotags: validate:"required"
+    uint64 mobile = 3;  // @gotags: validate:"gte=10000000000,lte=100000000000"
 }
 
+message User {
+	uint64 id = 1; // @gotags: validate:"required"
+	string name = 2;  // @gotags: validate:"required"
+    uint64 mobile = 3;  // @gotags: validate:"gte=10000000000,lte=100000000000"
+    uint64 createAt = 4; 
+	uint64 updateAt = 5;
+	bool enable = 6; 
+}

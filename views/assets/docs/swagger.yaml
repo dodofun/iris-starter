@@ -7,13 +7,21 @@ definitions:
       enable:
         type: boolean
       id:
+        description: '@gotags: validate:"required"'
         type: integer
       mobile:
+        description: '@gotags: validate:"gte=10000000000,lte=100000000000"'
+        maximum: 100000000000
+        minimum: 10000000000
         type: integer
       name:
+        description: '@gotags: validate:"required"'
         type: string
       updateAt:
         type: integer
+    required:
+    - id
+    - name
     type: object
 host: localhost:8080
 info:
