@@ -6,9 +6,6 @@ info:
     name: API Support
     url: http://www.swagger.io/support
   description: API文档.
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
   title: API DOC
   version: "1.0"
 paths:
