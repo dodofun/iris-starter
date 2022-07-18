@@ -33,7 +33,7 @@ func RegisterRouter(app *iris.Application) {
 // @Description  根据用户ID获取用户信息
 // @Accept       json
 // @Produce      json
-// @Param        id   query     int     true  "用户ID"
+// @Param        id   query     int   true  "用户ID"
 // @Success      200  {object}  User  "用户信息"
 // @Router       /v1/user [get]
 func get(ctx iris.Context) {

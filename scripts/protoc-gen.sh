@@ -14,7 +14,7 @@
 ./protoc --js_out=import_style=commonjs,binary:./ ./*/*/*.proto
 ./protoc --js_out=import_style=commonjs,binary:./ ./*/*/*/*.proto
 
-# 为生成的.pb.go文件注入自定义tag
+# 使用 protoc-go-inject-tag 为生成的.pb.go文件注入自定义tag
 ./protoc-go-inject-tag \
     -input=*/*.pb.go \
     -input=*/*/*.pb.go \
