@@ -1,8 +1,6 @@
 package response
 
 import (
-	"iris-starter/pkg/logging"
-
 	"github.com/kataras/iris/v12"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
@@ -47,28 +45,22 @@ func OkObjWithMsgAndStatusCode(ctx iris.Context, data proto.Message, msg string,
 		Data:   any,
 	}
 
-	options := iris.JSON{
-		Proto: iris.ProtoMarshalOptions{
-			AllowPartial: true,
-			Multiline:    true,
-			Indent:       "    ",
-		},
-	}
-
+	// 默认返回json
+	ctx.Negotiation().Accept.JSON()
 	// 根据 header 的 accept 值不同，返回不同格式数据，没有设置accept时，返回json格式数据
 	// protobuf: application/x-protobuf
 	// json: application/json
-	ctx.JSON(obj, options)
-	//  默认返回json
-	// ctx.Negotiation().Accept.JSON()
-	// response 状态码
-	// if statusCode > 0 {
-	// 	ctx.StatusCode(statusCode)
-	// } else {
-	// 	ctx.StatusCode(iris.StatusOK)
-	// }
+	ctx.Negotiation().Charset("utf-8").JSON().Protobuf().EncodingGzip()
 
-	logging.Info("TEST")
+	ctx.Negotiate(iris.N{
+		JSON:     obj, // for application/json
+		Protobuf: obj, // for application/x-protobuf
+	})
+
+	// response 状态码
+	if statusCode > 0 {
+		ctx.StatusCode(statusCode)
+	}
 
 	err = ctx.Err()
 	if err != nil {
@@ -104,25 +96,21 @@ func OkListWithMsgAndStatusCode(ctx iris.Context, data []proto.Message, paging *
 		Data:   anyDatas,
 	}
 
-	options := iris.JSON{
-		Proto: iris.ProtoMarshalOptions{
-			AllowPartial: true,
-			Multiline:    true,
-			Indent:       "    ",
-		},
-	}
-
+	// 默认返回json
+	ctx.Negotiation().Accept.JSON()
 	// 根据 header 的 accept 值不同，返回不同格式数据，没有设置accept时，返回json格式数据
 	// protobuf: application/x-protobuf
 	// json: application/json
-	ctx.Negotiation().Charset("utf-8").JSON(obj, options).Protobuf(obj).EncodingGzip()
-	//  默认返回json
-	ctx.Negotiation().Accept.JSON()
+	ctx.Negotiation().Charset("utf-8").JSON().Protobuf().EncodingGzip()
+
+	ctx.Negotiate(iris.N{
+		JSON:     obj, // for application/json
+		Protobuf: obj, // for application/x-protobuf
+	})
+
 	// response 状态码
 	if statusCode > 0 {
 		ctx.StatusCode(statusCode)
-	} else {
-		ctx.StatusCode(iris.StatusOK)
 	}
 
 	err := ctx.Err()
