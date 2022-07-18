@@ -1,13 +1,9 @@
 #!/bin/bash
 
 # 根据.proto生成.pb.go文件
-./protoc \
-    --go_out=. --go_opt=paths=source_relative \
-    --go-grpc_out=. \
-    --go-grpc_opt=paths=source_relative \
-    */*.proto \
-    */*/*.proto \
-    */*/*/*.proto \
+./protoc --go_out=. --go_opt=paths=source_relative  --go-grpc_out=. --go-grpc_opt=paths=source_relative ./*/*.proto
+./protoc --go_out=. --go_opt=paths=source_relative  --go-grpc_out=. --go-grpc_opt=paths=source_relative ./*/*/*.proto
+./protoc --go_out=. --go_opt=paths=source_relative  --go-grpc_out=. --go-grpc_opt=paths=source_relative ./*/*/*/*.proto
 
 # 根据.proto生成.pb.js文件
 ./protoc --js_out=import_style=commonjs,binary:./ ./*/*.proto

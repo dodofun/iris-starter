@@ -48,7 +48,7 @@ func get(ctx iris.Context) {
 	// 操作service
 	userService.Get()
 	// 返回
-	
+
 }
 
 func getList(ctx iris.Context) {
