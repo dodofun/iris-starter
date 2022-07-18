@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package response;
+
+import "google/protobuf/any.proto";
+
+option go_package = "./response";
+
+message Obj {
+    Header header = 1; 
+    google.protobuf.Any data = 2; 
+}
+
+message List {
+    Header header = 1; 
+    Paging paging = 2; 
+    repeated google.protobuf.Any data = 3;
+}
+
+message Header {
+    uint64 code = 1; 
+    string message = 2; 
+}
+
+message Paging {
+	uint64 page = 1; 
+	string pageSize = 2;
+    uint64 total = 3; 
+}

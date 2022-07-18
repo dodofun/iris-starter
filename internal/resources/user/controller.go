@@ -3,6 +3,7 @@ package user
 import (
 	"iris-starter/pkg/logging"
 	"iris-starter/pkg/request"
+	"iris-starter/pkg/response"
 
 	"github.com/kataras/iris/v12"
 )
@@ -48,6 +49,7 @@ func get(ctx iris.Context) {
 	// 操作service
 	userService.Get()
 	// 返回
+	response.Obj
 
 }
 
