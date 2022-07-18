@@ -1,4 +1,4 @@
-// source: pkg/response/model.proto
+// source: pkg/response/response.proto
 /**
  * @fileoverview
  * @enhanceable
