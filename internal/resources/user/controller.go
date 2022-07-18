@@ -41,15 +41,18 @@ func get(ctx iris.Context) {
 	var query request.QueryId
 	err := ctx.ReadQuery(&query)
 	logging.Infof("ID : ", query.Id)
-	logging.Infof("ERROR: ", err)
 	if err != nil {
 		ctx.StopWithError(iris.StatusBadRequest, err)
 		return
 	}
 	// 操作service
 	userService.Get()
+	user := &User{
+		Id:   1,
+		Name: "test",
+	}
 	// 返回
-	response.Obj
+	response.OkObj(ctx, user)
 
 }
 

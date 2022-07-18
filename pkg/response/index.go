@@ -1,36 +1,42 @@
 package response
 
 import (
+	"iris-starter/pkg/logging"
+
 	"github.com/kataras/iris/v12"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
 )
 
-// 错误：参数
-func ErrorParam() {
-
+// 错误：参数错误
+func ErrorParam(ctx iris.Context, err error) {
+	ctx.StopWithError(iris.StatusBadRequest, err)
 }
 
-// 错误：返回
+// 错误：发生异常
 func ErrorBadRequest(ctx iris.Context, err error) {
 	ctx.StopWithError(iris.StatusBadRequest, err)
 }
 
 // 正常：单条数据
-func OkObj(ctx iris.Context, data *proto.Message, msg string) {
-	OkObjWithStatusCode(ctx, data, msg, iris.StatusOK)
+func OkObj(ctx iris.Context, data proto.Message) {
+	OkObjWithMsg(ctx, data, HeaderMsgSuccess)
 }
 
-func OkObjWithStatusCode(ctx iris.Context, data *proto.Message, msg string, statusCode int) {
+func OkObjWithMsg(ctx iris.Context, data proto.Message, msg string) {
+	OkObjWithMsgAndStatusCode(ctx, data, msg, iris.StatusOK)
+}
+
+func OkObjWithMsgAndStatusCode(ctx iris.Context, data proto.Message, msg string, statusCode int) {
 
 	header := &Header{
-		Code:    0,
+		Code:    HeaderCodeSuccess,
 		Message: msg,
 	}
 
-	anypb.New(*data)
+	anypb.New(data)
 
-	any, err := anypb.New(*data)
+	any, err := anypb.New(data)
 	if err != nil {
 		ErrorBadRequest(ctx, err)
 		return
@@ -52,15 +58,17 @@ func OkObjWithStatusCode(ctx iris.Context, data *proto.Message, msg string, stat
 	// 根据 header 的 accept 值不同，返回不同格式数据，没有设置accept时，返回json格式数据
 	// protobuf: application/x-protobuf
 	// json: application/json
-	ctx.Negotiation().Charset("utf-8").JSON(obj, options).Protobuf(obj).EncodingGzip()
+	ctx.JSON(obj, options)
 	//  默认返回json
-	ctx.Negotiation().Accept.JSON()
+	// ctx.Negotiation().Accept.JSON()
 	// response 状态码
-	if statusCode > 0 {
-		ctx.StatusCode(statusCode)
-	} else {
-		ctx.StatusCode(iris.StatusOK)
-	}
+	// if statusCode > 0 {
+	// 	ctx.StatusCode(statusCode)
+	// } else {
+	// 	ctx.StatusCode(iris.StatusOK)
+	// }
+
+	logging.Info("TEST")
 
 	err = ctx.Err()
 	if err != nil {
@@ -70,10 +78,14 @@ func OkObjWithStatusCode(ctx iris.Context, data *proto.Message, msg string, stat
 }
 
 // 正常：列表数据
-func OkList(ctx iris.Context, data *[]proto.Message, paging *Paging, msg string) {
-	OkListWithStatusCode(ctx, data, paging, msg, iris.StatusOK)
+func OkList(ctx iris.Context, data []proto.Message, paging *Paging) {
+	OkListWithMsg(ctx, data, paging, HeaderMsgSuccess)
 }
-func OkListWithStatusCode(ctx iris.Context, data *[]proto.Message, paging *Paging, msg string, statusCode int) {
+func OkListWithMsg(ctx iris.Context, data []proto.Message, paging *Paging, msg string) {
+	OkListWithMsgAndStatusCode(ctx, data, paging, msg, iris.StatusOK)
+}
+
+func OkListWithMsgAndStatusCode(ctx iris.Context, data []proto.Message, paging *Paging, msg string, statusCode int) {
 
 	header := &Header{
 		Code:    0,
@@ -81,7 +93,7 @@ func OkListWithStatusCode(ctx iris.Context, data *[]proto.Message, paging *Pagin
 	}
 
 	anyDatas := []*anypb.Any{}
-	for _, v := range *data {
+	for _, v := range data {
 		any, _ := anypb.New(v)
 		anyDatas = append(anyDatas, any)
 	}

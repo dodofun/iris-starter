@@ -26,8 +26,8 @@ type Obj struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Header *Header   `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Data   *any1.Any `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Header *Header   `protobuf:"bytes,1,opt,name=header,proto3" json:"header"` // @gotags: json:"header"
+	Data   *any1.Any `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`     // @gotags: json:"data"
 }
 
 func (x *Obj) Reset() {
@@ -81,9 +81,9 @@ type List struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Header *Header     `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Paging *Paging     `protobuf:"bytes,2,opt,name=paging,proto3" json:"paging,omitempty"`
-	Data   []*any1.Any `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
+	Header *Header     `protobuf:"bytes,1,opt,name=header,proto3" json:"header"` // @gotags: json:"header"
+	Paging *Paging     `protobuf:"bytes,2,opt,name=paging,proto3" json:"paging"` // @gotags: json:"paging"
+	Data   []*any1.Any `protobuf:"bytes,3,rep,name=data,proto3" json:"data"`     // @gotags: json:"data"
 }
 
 func (x *List) Reset() {
@@ -144,8 +144,8 @@ type Header struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code    uint64 `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Code    uint64 `protobuf:"varint,1,opt,name=code,proto3" json:"code"`      // @gotags: json:"code"
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message"` // @gotags: json:"message"
 }
 
 func (x *Header) Reset() {
@@ -199,9 +199,9 @@ type Paging struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Page     uint64 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize string `protobuf:"bytes,2,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
-	Total    uint64 `protobuf:"varint,3,opt,name=total,proto3" json:"total,omitempty"`
+	Page     uint64 `protobuf:"varint,1,opt,name=page,proto3" json:"page"`        // @gotags: json:"page"
+	PageSize string `protobuf:"bytes,2,opt,name=pageSize,proto3" json:"pageSize"` // @gotags: json:"pageSize"
+	Total    uint64 `protobuf:"varint,3,opt,name=total,proto3" json:"total"`      // @gotags: json:"total"
 }
 
 func (x *Paging) Reset() {
